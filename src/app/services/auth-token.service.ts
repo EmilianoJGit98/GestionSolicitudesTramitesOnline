@@ -4,24 +4,22 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environment/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthTokenService {
-  private apiUrl = `${environment.base_url+'/auth'}`;
+  private apiUrl = `${environment.base_url + '/auth'}`;
 
   private readonly TOKEN_KEY = 'access_token';
   private readonly USERNAME = 'username';
   private readonly TOKEN_TYPE = 'tokenType';
 
-  constructor(private http: HttpClient){
-
-  }
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     const loginObj = {
       username,
       password,
-      client_secret: '284'
+      client_secret: '280',
     };
 
     const body = new URLSearchParams();
@@ -33,7 +31,7 @@ export class AuthTokenService {
     });
 
     return this.http.post(`${this.apiUrl}`, body.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
   }
 
@@ -43,19 +41,19 @@ export class AuthTokenService {
     localStorage.removeItem(this.TOKEN_TYPE);
   }
 
-  saveDataLogin(data: any){
+  saveDataLogin(data: any) {
     // console.log(data);
-    localStorage.setItem(this.TOKEN_KEY, data.access_token)
+    localStorage.setItem(this.TOKEN_KEY, data.access_token);
     localStorage.setItem(this.TOKEN_TYPE, data.token_type);
     localStorage.setItem(this.USERNAME, data.username);
   }
 
-  getDataLogin(){
+  getDataLogin() {
     return {
       access_token: this.getAccessToken(),
       token_type: this.getTokenType(),
       username: this.getUsername(),
-    }
+    };
   }
 
   saveToken(token: string) {
@@ -81,5 +79,4 @@ export class AuthTokenService {
   getUsername(): string | null {
     return localStorage.getItem(this.USERNAME);
   }
-
 }
