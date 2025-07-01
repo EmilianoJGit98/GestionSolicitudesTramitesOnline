@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "importanciones-mercadopago": {
+    "gestion-solicitudes-tramites-online": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/importanciones-mercadopago",
+            "outputPath": "dist/gestion-solicitudes-tramites-online",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -31,7 +31,9 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -61,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "importanciones-mercadopago:build:production"
+              "buildTarget": "gestion-solicitudes-tramites-online:build:production"
             },
             "development": {
-              "buildTarget": "importanciones-mercadopago:build:development"
+              "buildTarget": "gestion-solicitudes-tramites-online:build:development"
             }
           },
           "defaultConfiguration": "development"
