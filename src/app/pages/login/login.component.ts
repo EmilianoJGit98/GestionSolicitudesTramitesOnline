@@ -16,8 +16,13 @@ export class LoginComponent {
   loginObj: any = {
     username: '',
     password: '',
-    client_secret: '284',
+    client_secret: '',
   };
+
+  // codigos
+  //gestionsolicitudesfactibilidad 253
+  //GestionHabilitacionesComerciales 129
+  //solicitudes tramites automotores 204
 
   LoginData: any[] = [];
 
@@ -32,8 +37,9 @@ export class LoginComponent {
       .login(this.loginObj.username, this.loginObj.password)
       .subscribe(
         (res: any) => {
-          if (res.detail === 'OK') {
+          if (res?.access_token) {
             // Llamar a onLoginResponse para guardar el token
+            // console.log('Respuesta del login:', res);
             this.onLoginResponse(res);
 
             Swal.fire({
@@ -92,10 +98,12 @@ export class LoginComponent {
   }
 
   private onLoginResponse(tokenData: any): void {
+    // console.log(tokenData);
+    // console.log(tokenData.info_user.Modulos);
     this.tokenService.saveDataLogin(tokenData);
-
     this.tokenService.saveToken(tokenData.access_token); // Asegúrate de que esto coincide con la respuesta real
     this.tokenService.saveUsername(tokenData.username); // Almacena el nombre de usuario
     this.tokenService.saveTokenType(tokenData.token_type); // Almacena el nombre de usuario
+    this.tokenService.saveModulos(tokenData.info_user.Modulos); // Almacena el nombre de usuario
   }
 }

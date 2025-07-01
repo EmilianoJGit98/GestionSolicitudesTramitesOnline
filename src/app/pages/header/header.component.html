@@ -1,22 +1,44 @@
 <div class="flex-column flex-shrink-0 p-3 shadow bg-light d-none d-lg-none d-xl-block vh-100 w-100">
   <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <img src="img/logoMunicipalidadFsa.png" class="me-4 ms-3 rounded shadow" alt="" width="60" />
-    <span class="fs-min fw-bold text-dark">Municipalidad Digital - Maqueta</span>
+    <span *ngIf="modulo253" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes para Factibilidad
+      Comercial</span>
+
+    <span *ngIf="modulo129" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes para Habilitaciones
+      Comerciales</span>
+
+    <span *ngIf="modulo204" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes Tramites de los
+      Automotores</span>
   </a>
   <!-- <hr> -->
   <ul class="nav nav-pills flex-column mb-auto mt-4">
     <li class="nav-item d-flex justify-content-center">
-      <a class="nav-link w-100 fs-min- fw-bold text-dark active" aria-current="page" routerLink="home"
+      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="home"
         routerLinkActive="active">
-        <i class="fas fa-calendar-check me-2"></i>
+        <i class="fas fa-list-ul"></i>
         Pagina Principal
       </a>
     </li>
     <li class="nav-item d-flex justify-content-center">
-      <a class="nav-link w-100 fs-min- fw-bold text-dark active" aria-current="page" routerLink="ListaRegistros"
+      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="pendientes"
         routerLinkActive="active">
-        <i class="fas fa-list-ul"></i>
-        Grilla + Filtro + Btn Link + paginador
+
+        <i class="fa-solid fa-hourglass-half"></i>
+        Solicitudes Pendientes
+      </a>
+    </li>
+    <li class="nav-item d-flex justify-content-center">
+      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="rechazados"
+        routerLinkActive="active">
+        <i class="fa-solid fa-xmark"></i>
+        Solicitudes Rechazadas
+      </a>
+    </li>
+    <li class="nav-item d-flex justify-content-center">
+      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="completados"
+        routerLinkActive="active">
+        <i class="fa-solid fa-circle-check"></i>
+        Solicitudes Completadas
       </a>
     </li>
     <li class="nav-item d-flex justify-content-center" style="margin-top: auto !important">

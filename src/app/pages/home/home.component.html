@@ -1,141 +1,27 @@
-<div *ngIf="estadoCargaEventos" class="row ConteinerPreloader m-0">
-  <div class="col-12 ConteinerSpinner text-center">
-    <img class="imgSpinner" src="./img/logoMunicipalidadFsa.png" width="100px" height="100px" />
-    <div class="spinner mb-3"></div>
-    <h4 class="fw-bold text-white textoSpinner" style="font-weight: bold !important">
-      Cargando contenido
-    </h4>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <button type="button" class="btn btn-dark d-flex align-items-center fw-bold mb-1" (click)="mostrarInactivos()">
-        <!-- <mat-icon class="text-white m-0 me-1">{{ iconEmpty }}</mat-icon> -->
-        {{ msjVista }}
-      </button>
-    </div>
-    <div class="col-4">
-      <!-- <mat-form-field appearance="fill" class="w-100">
-        <mat-label>Buscar</mat-label>
-        <input
-          matInput
-          class=""
-          [(ngModel)]="filterValue"
-          (ngModelChange)="applyFilter()"
-          placeholder="Buscar por nombre, email o ciudad"
-        />
-      </mat-form-field> -->
-    </div>
-  </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 shadow">
-    <ng-container matColumnDef="NroComprobante">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">N° COMPR</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.NroComprobante }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="LiberacionPago">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">LIBERACIÓN</th>
-      <td mat-cell class="fs-min-" *matCellDef="let element">
-        {{ element.LiberacionPago }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="money_release_status">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">ESTATUS</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.money_release_status }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="nomraz">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">CONTRIBUYENTE</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.nomraz }}
-      </td>
-    </ng-container>
-
-    <!-- <ng-container matColumnDef="codbarf">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">codbarf</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">{{ element.codbarf }}</td>
-    </ng-container> -->
-
-    <ng-container matColumnDef="puntov">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">PUNTO V.</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.puntov }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="fechahora">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">FECHA HORA</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.fechahora }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="idrubro">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">ID RUBRO</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.idrubro }}
-      </td>
-    </ng-container>
-
-    <!-- <ng-container matColumnDef="idSubRubro">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">idSubRubro</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">{{ element.idSubRubro }}</td>
-    </ng-container> -->
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">ITEM</th>
-      <td mat-cell class="fs-min-" *matCellDef="let element">
-        {{ element.title }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="unit_price">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">PRECIO U.</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.unit_price }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="importado">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">IMPORTADO</th>
-      <td mat-cell class="fs-min" *matCellDef="let element">
-        {{ element.importado }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="fecha_importacion">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">
-        fecha importacion
-      </th>
-      <td mat-cell class="fs-min-" *matCellDef="let element">
-        {{ element.fecha_importacion }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="importar">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold">Importar</th>
-      <td mat-cell class="fs-min text-center" *matCellDef="let element">
-        <button class="btn btn-dark fw-bold text-white pe-3" *ngIf="element.importado == 0">
-          <i class="fas fa-file-import"></i>
-        </button>
-
-        <button class="btn border-0 text-success fw-bold px-3 disabled fs-med" *ngIf="element.importado == 1">
-          <i class="fas fa-check"></i>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[2, 10, 25, 100]"
-    aria-label="Select page" class="shadow">
-  </mat-paginator>
-</div>
+<!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link me-3 shadow-sm fw-bold active" id="pills-home-tab" data-bs-toggle="pill"
+      data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Todas las
+      solicitudes</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link me-3 shadow-sm fw-bold" id="pills-profile-tab" data-bs-toggle="pill"
+      data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+      aria-selected="false">Solicitudes Pendientes</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link me-3 shadow-sm fw-bold" id="pills-contact-tab" data-bs-toggle="pill"
+      data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+      aria-selected="false">Solicitudes Rechazadas</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link me-3 shadow-sm fw-bold" id="pills-contact-tab" data-bs-toggle="pill"
+      data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+      aria-selected="false">Solicitudes Terminadas</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+</div> -->

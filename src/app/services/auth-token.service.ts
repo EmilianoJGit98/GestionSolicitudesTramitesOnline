@@ -12,6 +12,7 @@ export class AuthTokenService {
   private readonly TOKEN_KEY = 'access_token';
   private readonly USERNAME = 'username';
   private readonly TOKEN_TYPE = 'tokenType';
+  private readonly MODULOS = 'modulos';
 
   constructor(private http: HttpClient) {}
 
@@ -39,6 +40,7 @@ export class AuthTokenService {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.USERNAME);
     localStorage.removeItem(this.TOKEN_TYPE);
+    localStorage.removeItem(this.MODULOS);
   }
 
   saveDataLogin(data: any) {
@@ -46,6 +48,7 @@ export class AuthTokenService {
     localStorage.setItem(this.TOKEN_KEY, data.access_token);
     localStorage.setItem(this.TOKEN_TYPE, data.token_type);
     localStorage.setItem(this.USERNAME, data.username);
+    localStorage.setItem(this.MODULOS, data.modulos);
   }
 
   getDataLogin() {
@@ -53,6 +56,7 @@ export class AuthTokenService {
       access_token: this.getAccessToken(),
       token_type: this.getTokenType(),
       username: this.getUsername(),
+      modulos: this.getModulos(),
     };
   }
 
@@ -78,5 +82,13 @@ export class AuthTokenService {
 
   getUsername(): string | null {
     return localStorage.getItem(this.USERNAME);
+  }
+
+  saveModulos(modulos: any[]) {
+    return localStorage.setItem(this.MODULOS, JSON.stringify(modulos));
+  }
+
+  getModulos(): string | null {
+    return localStorage.getItem(this.MODULOS);
   }
 }

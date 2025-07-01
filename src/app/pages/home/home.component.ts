@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
+import { AuthTokenService } from '../../services/auth-token.service';
 
 interface User {
   id: number;
@@ -19,14 +20,10 @@ interface User {
 interface comprobante {
   NroComprobante: string;
   LiberacionPago: string;
-  // money_release_status: string;
   nro_doc: string;
   nomraz: string;
-  // codbarf: string;
   puntov: number;
   fechahora: string;
-  // idrubro: number;
-  // idSubRubro: number;
   idLiquidacion: number;
   title: string;
   unit_price: any;
@@ -55,19 +52,15 @@ export class HomeComponent implements AfterViewInit {
 
   filterValue: string = '';
 
+  constructor(private tokenService: AuthTokenService) {}
+
   displayedColumns: string[] = [
     'NroComprobante',
     'LiberacionPago',
-    // 'money_release_status',
     'nomraz',
-    // 'codbarf',
-    // 'puntov',
     'fechahora',
-    // 'idrubro',
-    // 'idSubRubro',
     'title',
     'unit_price',
-    // 'importado',
     'fecha_importacion',
     'importar',
   ];
@@ -316,59 +309,8 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
     // Enlaza el paginator a la fuente de datos
     this.dataSource.paginator = this.paginator;
+    // this.getModulos();
   }
-
-  // applyFilter() {
-  //   if (this.filterValue.trim() === '') {
-  //     this.dataSource.data = [
-  //       {
-  //         id: 1,
-  //         name: 'Juan Pérez',
-  //         email: 'juan.perez@example.com',
-  //         age: 30,
-  //         city: 'Madrid',
-  //       },
-  //       {
-  //         id: 2,
-  //         name: 'Ana García',
-  //         email: 'ana.garcia@example.com',
-  //         age: 25,
-  //         city: 'Barcelona',
-  //       },
-  //       {
-  //         id: 3,
-  //         name: 'Luis Gómez',
-  //         email: 'luis.gomez@example.com',
-  //         age: 35,
-  //         city: 'Valencia',
-  //       },
-  //       {
-  //         id: 4,
-  //         name: 'Laura Martínez',
-  //         email: 'laura.martinez@example.com',
-  //         age: 28,
-  //         city: 'Sevilla',
-  //       },
-  //       {
-  //         id: 5,
-  //         name: 'Carlos López',
-  //         email: 'carlos.lopez@example.com',
-  //         age: 40,
-  //         city: 'Bilbao',
-  //       },
-  //     ];
-  //   } else {
-  //     // Filtra los datos según el valor de búsqueda
-  //     this.dataSource.data = this.dataSource.data.filter(
-  //       (user) =>
-  //         user.name.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-  //         user.email.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-  //         user.city.toLowerCase().includes(this.filterValue.toLowerCase())
-  //     );
-  //   }
-  //   // Vuelve a establecer el paginator después de aplicar el filtro
-  //   this.dataSource.paginator = this.paginator;
-  // }
 
   mostrarInactivos(): void {
     // Cambia el estado de deshabilitados
@@ -388,4 +330,15 @@ export class HomeComponent implements AfterViewInit {
     // Cargar los eventos según el nuevo estado
     // this.cargarEventos(this.deshabilitados);
   }
+
+  // getModulos() {
+  //   const modulosString = this.tokenService.getModulos();
+  //   if (modulosString) {
+  //     const modulos = JSON.parse(modulosString);
+  //     // hacer algo con los módulos
+  //     console.log(modulos);
+  //   } else {
+  //     console.log('No hay módulos almacenados');
+  //   }
+  // }
 }
