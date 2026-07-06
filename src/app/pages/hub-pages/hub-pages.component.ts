@@ -9,4 +9,4 @@ import { RouterModule } from '@angular/router';
   templateUrl: './hub-pages.component.html',
   styleUrl: './hub-pages.component.css',
 })
-export class HubPagesComponent {}
+export class HubPagesComponent { }

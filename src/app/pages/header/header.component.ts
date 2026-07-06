@@ -12,11 +12,14 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
   Token: any = '';
-  public modulo253: string | null = null;
-  public modulo129: string | null = null;
-  public modulo204: string | null = null;
+  tituloHeader: any = '';
+  rutaSolicitudes: any = '';
 
-  constructor(private tokenService: AuthTokenService, private router: Router) {}
+  // public modulo253: string | null = null;
+  // public modulo129: string | null = null;
+  // public modulo204: string | null = null;
+
+  constructor(private tokenService: AuthTokenService, private router: Router) { }
 
   ngOnInit() {
     this.validaToken();
@@ -37,19 +40,39 @@ export class HeaderComponent {
   }
 
   getModulos() {
-    const modulosString = this.tokenService.getModulos();
-    if (modulosString) {
-      const modulos = JSON.parse(modulosString); // array de cadenas
-      const idsBuscados = ['253', '129', '204'];
+    const modulos = this.tokenService.getModulos();
+    const moduloSelecionado = this.tokenService.getModuloSeleccionado();
 
-      // Buscar y asignar las variables si existen
-      this.modulo253 = modulos.find((id: string) => id === '253') || null;
-      this.modulo129 = modulos.find((id: string) => id === '129') || null;
-      this.modulo204 = modulos.find((id: string) => id === '204') || null;
+    // alert(moduloSelecionado);
+    if (moduloSelecionado) {
+      //console.log("MODULOS ASIGNADOS: " + modulos)
+      if (moduloSelecionado.includes("253")) {
+        this.tituloHeader = 'Solicitudes Factibilidad Comercial'
+        this.rutaSolicitudes = 'homeFactibilidad';
 
-      // Aquí puedes hacer más con las variables si lo deseas
-    } else {
-      console.log('No hay módulos almacenados');
+        //this.router.navigateByUrl('homeFactibilidad');
+      } else if (moduloSelecionado.includes("129")) {
+
+        this.tituloHeader = 'Solicitudes para Habilitacion Comercial'
+        this.rutaSolicitudes = 'homeHabilitaciones';
+
+      } else if (moduloSelecionado.includes("204")) {
+
+        this.tituloHeader = 'Gestion Automotores'
+        this.rutaSolicitudes = 'homeAutomotores';
+      }
+      //   const modulos = JSON.parse(modulosString); // array de cadenas
+      //   const idsBuscados = ['253', '129', '204'];
+
+      //   // Buscar y asignar las variables si existen
+      //   this.modulo253 = modulos.find((id: string) => id === '253') || null;
+      //   this.modulo129 = modulos.find((id: string) => id === '129') || null;
+      //   this.modulo204 = modulos.find((id: string) => id === '204') || null;
+
+      //   // Aquí puedes hacer más con las variables si lo deseas
+      // } else {
+      //   console.log('No hay módulos almacenados');
+      // }
     }
   }
 }

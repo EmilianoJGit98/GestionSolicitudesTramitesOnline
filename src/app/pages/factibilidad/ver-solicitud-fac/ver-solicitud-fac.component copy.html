@@ -1,0 +1,316 @@
+<div class="container shadow px-4 py-2 mt-3" style="border: solid 1px silver !important">
+    <h5 class="w-100 mt-2 text-center fw-bold ff fs-alto">Solicitud de Estudio de Fáctibilidad</h5>
+    <div class="accordion mb-3" id="InfoPartida">
+        <!-- <div class="accordion-item rounded-0 p-0 m-0 mb-0 hidden">     -->
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button p-0 px-4 collapsed fw-bold fs-med ff shadow rounded border" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                aria-controls="collapseThree">
+                <i id="" class="fas fa-question-circle me-2" width="24" height="24"></i>
+                <div class="ff">
+                    Info. de la Partida:
+                    15997
+                </div>
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse border shadow rounded" aria-labelledby="headingThree"
+            data-bs-parent="#InfoPartida">
+            <div class="accordion-body">
+                <span class="fw-bold text-left">Información de la Partida:
+                    15997
+                </span>
+
+                <div class="col-md-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Nomenclatura</label>
+                    <input type="text" class="form-control form-control-sm" id="Nomenclatura"
+                        value="01VII  M0034900060000000" disabled>
+                </div>
+                <div class="col-md-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Barrio</label>
+                    <input type="text" class="form-control form-control-sm" id="Barrio" value="VENEZUELA" disabled>
+                </div>
+                <div class="col-md-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Calle</label>
+                    <input type="text" class="form-control form-control-sm" id="Calle" value="DESCONOCIDO" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Altura</label>
+                    <input type="text" class="form-control form-control-sm" id="Altura" value="0    " disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Manzana</label>
+                    <input type="text" class="form-control form-control-sm" id="Manzana" value="349" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Casa</label>
+                    <input type="text" class="form-control form-control-sm" id="Casa" value="006" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Superficie</label>
+                    <input type="text" class="form-control form-control-sm" id="Superficie" value="160.0" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Condicion</label>
+                    <input type="text" class="form-control form-control-sm" id="Condicion" value="EDIFICADO" disabled>
+                </div>
+                <div class="col-12 p-0 px-1 mb-2">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Zona Urbana</label>
+                    <input type="text" class="form-control form-control-sm" id="ZonaR" value="Z.R.1" disabled>
+                </div>
+            </div>
+        </div>
+        <!-- </div>         -->
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6 pe-0 row">
+            <div class="col-md-9 mb-2">
+                <div class="form-floating _completar">
+                    <input type="text" id="val_expediente" class="form-control fw-bold" autocomplete="off" required
+                        name="expediente" form="up_expediente" placeholder="ingresar expediente">
+                    <label class="fw-bold" style="font-size: 15px !important;">Asignar Expediente</label>
+                </div>
+            </div>
+
+            <div class="col-md-1 mb-1">
+                <div class="form-floating">
+                    <button type="submit" form="up_expediente" class="btn btn-success p-1 px-2 fw-bold rounded-0"
+                        name="insertar_expediente">
+                        <i class="fas fa-check"></i> Confirmar
+                    </button>
+                </div>
+            </div>
+
+            <!-- <div class="col-md-12 mb-2">
+                <div class="form-floating">
+                    <input type="text" id="val_expediente" readonly class="form-control fw-bold" value="250398">
+                    <label class="fw-bold" style="font-size: 15px !important;">Expediente</label>
+                </div>
+            </div> -->
+        </div>
+        <div class="col-md-6 mb-1 row">
+            <div class="col-md-9 mb-2">
+                <div class="form-floating _completar">
+                    <select class="form-select fw-bold" id="floatingSelect" name="grado_molestia"
+                        aria-label="Floating label select example">
+                        <option selected>Seleccione grado de Molestia</option>
+                        <option value="1">I</option>
+                        <option value="2">II</option>
+                        <option value="3">III</option>
+                        <option value="4">IV</option>
+                        <option value="5">V</option>
+                    </select>
+                    <label for="floatingSelect">Grados de molestia</label>
+                </div>
+            </div>
+
+            <div class="col-md-1 mb-2">
+                <div class="form-floating">
+                    <button type="submit" form="up_grado_molestia" class="btn btn-success p-1 px-2 fw-bold rounded-0"
+                        name="insertar_grado_molestia">
+                        <i class="fas fa-check"></i> Confirmar
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-5 mb-2">
+                <div class="form-floating">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <!-- <h6 class="w-100 mt-2 text-center fw-bold">Datos del Solicitante</h6> -->
+
+        <div class="row">
+            <div class="col-md-6 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="ACOSTA RODRIGO LAUREANO">
+                    <label class="fw-bold" style="font-size: 15px !important;">Nombre del Solicitante</label>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="38577190">
+                    <label class="fw-bold" style="font-size: 15px !important;">Dni</label>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-6">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="3704286652">
+                    <label class="fw-bold" style="font-size: 15px !important;">Telefono</label>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="rodriii750@gmail.com">
+                    <label class="fw-bold" style="font-size: 15px !important;">Mail</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <!-- <h6 class="w-100 mt-2 text-center fw-bold">Datos de la Solicitud</h6> -->
+            <div class="col-md-1 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="149">
+                    <label class="fw-bold" style="font-size: 15px !important;">Id</label>
+                </div>
+            </div>
+            <div class="col-md-2 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="36335">
+                    <label class="fw-bold" style="font-size: 15px !important;">Partida</label>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="2025-07-03">
+                    <label class="fw-bold" style="font-size: 15px !important;">Fecha de solicitud</label>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="">
+                    <label class="fw-bold" style="font-size: 15px !important;">Fecha de finalización</label>
+                </div>
+            </div>
+
+            <div class="col-md-2 mb-2">
+                <div class="form-floating ">
+                    <input type="text" id="val_molestia" readonly class="form-control fw-bold" value="">
+                    <label class="fw-bold" style="font-size: 15px !important;">Grado de Molestia</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-2">
+                <div class="form-floating ">
+                    <input type="text" readonly class="form-control fw-bold" value="Venta y Exposicion">
+                    <label class="fw-bold" style="font-size: 15px !important;">Actividad Comercial</label>
+                </div>
+            </div>
+
+            <!-- <div class="col-md-12 mb-3" id="nueva_descripcion">
+                <textarea name="obs_gestion" class="form-control" id="desc" cols="30" rows="3" placeholder="Agregar Observacion"></textarea>
+            </div> -->
+
+
+            <div class="col-md-11 mb-2">
+                <div class="form-floating _completar">
+                    <textarea name="obs_gestion" form="up_observacion" class="form-control fw-bold" id="desc" cols="30"
+                        rows="3" placeholder="Agregar Observacion"></textarea>
+                    <label class="fw-bold" style="font-size: 15px !important;">Agregue una observación</label>
+                </div>
+            </div>
+
+            <div class="col-md-1 mb-2">
+                <div class="form-floating">
+                    <button type="submit" form="up_observacion" class="btn btn-success p-1 px-2 fw-bold rounded-0"
+                        name="insertar_observacion">
+                        <i class="fas fa-check"></i> Confirmar
+                    </button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="p-2" *ngIf="requisitosDigitalizados && requisitosDigitalizados.length > 0; else sinDatos">
+        <!-- <table class="table table-striped border shadow">
+                        <thead class="text-center bg-azul">
+                            <tr>
+                                <th class="text-center bg-azul">ID</th>
+                                <th class="text-center bg-azul">Detalles</th>
+    
+                                <th class="text-center bg-azul">Digitalizado</th>
+    
+                                <th class="text-center bg-azul">Accion</th>
+                              
+    
+                            </tr>
+                        </thead>
+                        <tbody class="fs-min">
+                            <tr class="p-0 m-0" *ngFor="let doc of requisitosDigitalizados">
+                                <td>{{ doc.idTramitesRequisitos ?? doc.idTramitesRequisitosId ??
+                                    doc.idTramitesRequisitos?.idTramitesRequisitos }}</td>
+                                <td class="text-left">{{ doc.TramitesRequisitosDetalles ??
+                                    doc.TramitesRequisitosDetallesDetalles ??
+                                    doc.Detalles }}
+                                </td>
+    
+                                <td>{{ doc.Digitalizado ?? doc.DigitalizadoEstado ?? 'NO' }}</td>
+    
+                                <td class="align-items-center">
+                                    <button class="btn btn-danger shadow fw-bold rounded text-light fs-min p-1 px-3"
+                                        *ngIf="doc.Digitalizado === 'SI'"><i class="fas fa-trash me-2"></i>Borrar
+                                        requisito</button>
+    
+                                    <button class="btn border disabled fw-bold rounded text-dark fs-min p-1 px-3"
+                                        *ngIf="doc.Digitalizado === 'NO'"><i class="fas fa-trash me-2"></i>Borrar
+                                        requisito</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+        <div class="row">
+            <div class="col-3 mb-2 d-flex" *ngFor="let evento of requisitosDigitalizados; let i = index">
+                <div class="w-100 mb-2 d-flex align-items-stretch">
+                    <div class="toast show w-100 p-2" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header py-0">
+                            <div class="row p-0">
+                                <div class="col-10 p-0 text-center">
+                                    <h5 class="text-center fs-min- fw-bold w-100 ff lh-base fw-bold">{{
+                                        evento.TramitesRequisitosDetalles
+                                        }}</h5>
+                                </div>
+                                <div class="col-2 p-0">
+
+                                    <!-- <button class="btn btn-danger fw-bold rounded text-light fs-min p-1 px-3"
+                                                    *ngIf="evento.Digitalizado === 'SI'"
+                                                    (click)="borrarRequisitoDigitalizado(id_tramite_por_contribuyente, usuario_login, evento.IdDocumentosDigitalizados)"><i
+                                                        class="fas fa-trash"></i></button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="toast-header border-0 fs-min p-1">
+                            <div class="toast-header border-0 fs-min p-1">
+                                <input type="hidden" name="IdDocumentosDigitalizados"
+                                    [value]="evento?.IdDocumentosDigitalizados">
+                                <div class="toast-header fs-min p-1 d-flex align-items-stretch">
+                                    <button type="button" class="btn" (click)="openModalWithIndex(i)"
+                                        *ngIf="evento.Digitalizado == 'SI'">
+                                        <img class="card-img-top" [src]="evento?.img | decodebase64 : 'png'"
+                                            alt="Imagen del requisito" />
+                                    </button>
+
+                                    <span type="button" class="w-100" *ngIf="evento.Digitalizado == 'NO'">
+                                        <h3 class="m-auto text-center w-100 ff">
+                                            <i class="far fa-file-image"></i>
+                                            NO SE DIGITALIZÓ LA IMAGEN
+                                        </h3>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

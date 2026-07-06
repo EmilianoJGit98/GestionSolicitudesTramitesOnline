@@ -1,0 +1,415 @@
+<div class="container shadow px-4 py-2 mt-3" style="border: solid 1px silver !important">
+    <h5 class="w-100 mt-2 text-center fw-bold ff fs-alto">Solicitud de Estudio de Fáctibilidad</h5>
+    <div class="row g-2 mb-3" *ngFor="let t of tramitesFiltradosGlobal">
+        <div class="col-12 mt-3">
+            <div class="alert bg-warning p-0 shadow" *ngIf="t.estado == 'PAUSADO'">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">ESTADO DE LA SOLICITUD</h5>
+                <hr class="m-0">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">PAUSADO</h5>
+            </div>
+            <div class="alert bg-success p-0 shadow text-white" *ngIf="t.estado == 'TERMINADO'">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">ESTADO DE LA SOLICITUD</h5>
+                <hr class="m-0">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">TERMINADO</h5>
+            </div>
+            <div class="alert bg-primary p-0 shadow text-white" *ngIf="t.estado == 'EN PROCESO'">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">ESTADO DE LA SOLICITUD</h5>
+                <hr class="m-0">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">EN PROCESO</h5>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="accordion mb-3" id="InfoPartida" *ngFor="let p of datosPartida">
+        <!-- <div class="accordion-item rounded-0 p-0 m-0 mb-0 hidden">     -->
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button p-0 px-4 collapsed fw-bold fs-med ff shadow rounded border" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                aria-controls="collapseThree">
+                <i id="" class="fas fa-question-circle me-2" width="24" height="24"></i>
+                <div class="ff">
+                    Info. de la Partida:
+                    {{p.partida}}
+                </div>
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse border shadow rounded" aria-labelledby="headingThree"
+            data-bs-parent="#InfoPartida">
+            <div class="accordion-body">
+                <span class="fw-bold text-left">Información de la Partida:
+                    {{p.partida}}
+                </span>
+
+                <div class="col-md-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Nomenclatura</label>
+                    <input type="text" class="form-control form-control-sm" id="Nomenclatura" value="{{p.nomenc}}"
+                        disabled>
+                </div>
+                <div class="col-md-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Barrio</label>
+                    <input type="text" class="form-control form-control-sm" id="Barrio" value="{{p.barrio}}" disabled>
+                </div>
+                <div class="col-md-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Calle</label>
+                    <input type="text" class="form-control form-control-sm" id="Calle" value="{{p.calle}}" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Altura</label>
+                    <input type="text" class="form-control form-control-sm" id="Altura" value="{{p.puerta}}" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Manzana</label>
+                    <input type="text" class="form-control form-control-sm" id="Manzana" value="{{p.manzana}}" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Casa</label>
+                    <input type="text" class="form-control form-control-sm" id="Casa" value="{{p.casa}}" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Superficie</label>
+                    <input type="text" class="form-control form-control-sm" id="Superficie"
+                        value="{{p.sup_mens}} {{p.sup_mens}}" disabled>
+                </div>
+                <div class="col-12 p-0 px-1">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Condicion</label>
+                    <input type="text" class="form-control form-control-sm" id="Condicion" value="{{p.tpo_parc_desc}}"
+                        disabled>
+                </div>
+                <div class="col-12 p-0 px-1 mb-2">
+                    <label for="exampleInputEmail1" class="form-label m-0 mt-1">Zona Urbana</label>
+                    <input type="text" class="form-control form-control-sm" id="ZonaR" value="{{p.zona}}" disabled>
+                </div>
+            </div>
+        </div>
+        <!-- </div>         -->
+    </div>
+
+
+    <div class="row" *ngFor="let estadoT of tramitesFiltradosGlobal">
+        <div class="col-md-6 mb-2">
+            <div class="form-floating_completar" *ngIf="!estadoT.expediente_fact">
+                <button type="button" class="btn p-3 shadow-sm fw-bold border-warning w-100" data-bs-toggle="modal"
+                    data-bs-target="#modalExpediente">
+                    <i class="fas fa-file-contract me-3"></i>Debe asignar expediente
+                </button>
+            </div>
+
+            <div class="form-floating" *ngIf="estadoT.expediente_fact">
+                <input type="text" class="form-control border-1 border-primary shadow-sm color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ estadoT.expediente_fact }}" readonly>
+                <label class="text-dark fw-bold">Nº Expediente</label>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="form-floating_completar" *ngIf="!estadoT.grado_molestia">
+                <button type="button" class="btn p-3 shadow-sm fw-bold border-warning w-100" data-bs-toggle="modal"
+                    data-bs-target="#ModalgradoMolestia">
+                    <i class="fas fa-file-contract me-3"></i>Debe asignar grado de Molestia
+                </button>
+            </div>
+            <div class="form-floating" *ngIf="estadoT.grado_molestia">
+                <input type="text" class="form-control border-1 border-primary shadow-sm color-azul fw-bold"
+                    placeholder="name@example.com" readonly value="{{ estadoT.grado_molestia }}">
+                <label class="text-dark fw-bold">Grado de Molestia</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" *ngFor="let t of tramitesFiltradosGlobal">
+        <div class="col-md-6 my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.nombre_contribuyente }}">
+                <label class="text-dark fw-bold">Contribuyente </label>
+            </div>
+        </div>
+
+        <div class="col-md-6 my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.nro_dni_sw }}">
+                <label class="text-dark fw-bold">DNI</label>
+            </div>
+        </div>
+
+        <div class="col-md my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.telefono }}">
+                <label class="text-dark fw-bold">Telefono</label>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.mail }}">
+                <label class="text-dark fw-bold">Mail</label>
+            </div>
+        </div>
+
+        <div class="col-md my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.id_solicitud }}">
+                <label class="text-dark fw-bold">N° Solicitud </label>
+            </div>
+        </div>
+        <div class="col-md my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.objeto_tramite }}">
+                <label class="text-dark fw-bold">Partida</label>
+            </div>
+        </div>
+
+        <div class="col-md my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.fecha_inicio_tramite }}">
+                <label class="text-dark fw-bold">Fecha de Inicio</label>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 my-1">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.actividad_descripcion }}">
+                <label class="text-dark fw-bold">Actividad Comercial</label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-5 justify-content-start" *ngFor="let t of tramitesFiltradosGlobal; let i = index">
+        <h5 class="m-0 my-2 text-center ff fw-bold fs-med">Documentos digitalizados</h5>
+        <div class="col-3 justify-content-start" *ngFor="let factibilidad of requisitosDigitalizados; let i = index">
+            <div class="toast bg-success text-white bg-primary border-0 show my-1 fw-bold pointer" role="alert"
+                *ngIf="factibilidad.Digitalizado == 'SI'" aria-live="assertive" aria-atomic="true"
+                (click)="openModalWithIndex(i)">
+                <div class="d-flex">
+                    <div class="toast-body fs-min-">
+                        {{factibilidad.TramitesRequisitosDetalles}}
+                    </div>
+                    <button type="button" class="btn me-2 m-auto">
+                        <i class="fas fa-eye text-white"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="toast bg-danger text-white bg-primary border-0 show my-1 fw-bold" role="alert"
+                *ngIf="factibilidad.Digitalizado == 'NO'" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fs-min-">
+                        {{factibilidad.TramitesRequisitosDetalles}}
+                    </div>
+                    <button type="button" class="btn me-2 m-auto">
+                        <i class="fas far fa-eye-slash text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pe-0 row mt-2 mb-2" *ngIf="!t.expediente_fact">
+        </div>
+
+        <hr class="my-3">
+
+
+        <div class="col-md-12 mb-2" *ngFor="let t of tramitesFiltradosGlobal">
+
+            <button type="submit" form="up_observacion" class="btn btn-success fw-bold border-0 shadow me-3 p-3"
+                name="insertar_observacion" *ngIf="t.estado == 'EN PROCESO' || t.estado == 'PAUSADO' "
+                (click)="FinalizarSolicitud(t.id_solicitud, t.id_contribuyente, t.id_tramite_contribu, usuario_login)">
+                <i class=" fas fa-check"></i> Finalizar Solicitud
+            </button>
+            <button type="button" class="btn p-3 shadow fw-bold btn-warning text-dark" *ngIf="t.estado == 'EN PROCESO'"
+                data-bs-toggle="modal" data-bs-target="#modalTramite">
+                <i class="fas fa-pause me-3"></i>Pausar
+            </button>
+
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="modalTramite" tabindex="-1" aria-labelledby="modalTramiteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTramiteLabel">Formulario de Trámite</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+
+                <div class="modal-body" *ngFor="let t of tramitesFiltradosGlobal">
+                    <form id="formTramite" autocomplete="off">
+                        <div class="mb-3">
+
+                            <input type="hidden" class="form-control" id="id_tramite_por_contribuyente"
+                                name="id_tramite_por_contribuyente" placeholder="Ingrese el ID del trámite"
+                                value="{{t.id_tramite_contribu}}" required>
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <input type="hidden" class="form-control" id="cod_usu" name="cod_usu"
+                                value="{{ usuario_login }}" placeholder="Ingrese el código de usuario" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="motivo_devolucion" class="form-label fw-bold">Motivo de rechazo</label>
+                            <textarea class="form-control" id="motivo_devolucion" name="motivo_devolucion" rows="4"
+                                placeholder="Describa el motivo de la devolución" required></textarea>
+                        </div>
+
+                        <h5 class="text-danger fw-bold center m-0 fs-med fs-montserrat">Seleccione los requisitos
+                            erroneos
+                        </h5>
+
+                        <!-- <div *ngFor="let doc of requisitosDigitalizados"> -->
+                        <div class="form-check mb-2" *ngFor="let doc of requisitosDigitalizados">
+                            <input class="form-check-input" type="checkbox" [id]="doc.idTramitesRequisitos"
+                                [name]="'requisitosErr[]'" [value]="doc.IdDocumentosDigitalizados"
+                                (change)="onCheckChange($event, doc.IdDocumentosDigitalizados, doc.idTramitesRequisitos)">
+                            <label class="form-check-label" [for]="doc.idTramitesRequisitos">
+                                {{doc.TramitesRequisitosDetalles}} - {{doc.idTramitesRequisitos}}
+                            </label>
+                        </div>
+
+                    </form>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="onSubmitFormPausar()">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalExpediente" tabindex="-1" aria-labelledby="modalExpedienteLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" *ngFor="let t of tramitesFiltradosGlobal">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalExpedienteLabel">Asignar Número de Expediente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+
+                <div class="modal-body">
+                    <form id="formTramiteExpediente" autocomplete="off">
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="id_tramite_por_contribuyente"
+                                name="id_tramite_por_contribuyente" [value]="t.id_solicitud" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="cod_usu" name="cod_usu"
+                                [value]="usuario_login" required>
+                        </div>
+
+                        <div class="form-floating _completar">
+                            <input type="text" [id]="'val_expediente_' + t.id_solicitud" class="form-control fw-bold"
+                                required name="expediente" [(ngModel)]="t.expediente"
+                                [ngModelOptions]="{standalone: true}" placeholder="name@example.com">
+                            <label class="fw-bold" style="font-size: 15px !important;">Asignar Expediente</label>
+                        </div>
+
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="onSubmitFormExpediente(t)"
+                        form="formTramiteExpediente">
+                        Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalgradoMolestia" tabindex="-1" aria-labelledby="ModalgradoMolestiaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" *ngFor="let t of tramitesFiltradosGlobal">
+
+                <div class="modal-header">
+                    <h5 class="modal-title ff fs-med fw-bold" id="ModalgradoMolestiaLabel">Asignar Grado de molesita
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+
+                <div class="modal-body">
+                    <form id="formTramiteGradoMolestia" autocomplete="off">
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="id_solicitud" name="id_solicitud"
+                                [value]="t.id_solicitud" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="cod_usu" name="cod_usu"
+                                [value]="usuario_login" required>
+                        </div>
+
+
+                        <div class="form-floating _completar w-100 mb-3">
+                            <select class="form-select fw-bold shadow border-0" name="id_grado_molestia"
+                                aria-label="Floating label select example" id="grado_molestia"
+                                [(ngModel)]="t.id_grado_molestia" [ngModelOptions]="{standalone: true}">
+                                <option selected disabled>Seleccione grado de Molestia</option>
+                                <option value="1">I</option>
+                                <option value="2">II</option>
+                                <option value="3">III</option>
+                                <option value="4">IV</option>
+                                <option value="5">V</option>
+                            </select>
+                            <label for="grado_molestia">Seleccione grado de molestia</label>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="onSubmitFormGradoMolestia(t)"
+                        form="formTramiteGradoMolestia">
+                        Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalRequisito" tabindex="-1" aria-labelledby="ModalRequisitoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalRequisitoLabel">{{ selectedReq?.titulo || 'Requisito' }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center p-3">
+                    <img class="img-fluid" [src]="selectedReq?.img | decodebase64 : 'png'"
+                        alt="Imagen grande del requisito" />
+                </div>
+                <div class="modal-footer">
+                    <!-- Puedes mostrar más datos si quieres -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>

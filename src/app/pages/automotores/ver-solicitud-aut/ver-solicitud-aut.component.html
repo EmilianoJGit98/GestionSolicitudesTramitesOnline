@@ -1,0 +1,263 @@
+<div class="container">
+    <div class="row g-2 mb-3" *ngFor="let t of tramitesFiltradosGlobal">
+        <div class="col-12 mt-3">
+            <div class="alert bg-warning p-0 shadow" *ngIf="t.estado == 'PAUSADO'">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">ESTADO DE LA SOLICITUD</h5>
+                <hr class="m-0">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">PAUSADO</h5>
+            </div>
+            <div class="alert bg-success p-0 shadow text-white" *ngIf="t.estado == 'TERMINADO'">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">ESTADO DE LA SOLICITUD</h5>
+                <hr class="m-0">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">TERMINADO</h5>
+            </div>
+            <div class="alert bg-primary p-0 shadow text-white" *ngIf="t.estado == 'EN PROCESO'">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">ESTADO DE LA SOLICITUD</h5>
+                <hr class="m-0">
+                <h5 class="fw-bold fs-med m-0 text-center P-0 ff">EN PROCESO</h5>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.nombre_tramite }}">
+                <label class="text-dark fw-bold">Tramite</label>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.id_solicitud }}">
+                <label class="text-dark fw-bold">Nº Solicitud</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.objeto_tramite }}">
+                <label class="text-dark fw-bold">Dominio</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-2" *ngFor="let t of tramitesFiltradosGlobal">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.nombre_contribuyente }}">
+                <label class="text-dark fw-bold">Contribuyente</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control border-0 shadow color-azul fw-bold"
+                    placeholder="name@example.com" value="{{ t.fecha_inicio_tramite }}">
+                <label class="text-dark fw-bold">Fecha de Inicio</label>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #sinDatos>
+        <p>No hay trámites filtrados para mostrar.</p>
+    </ng-template>
+
+    <div class="container p-3 shadow rounded mt-2">
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item rounded-0">
+                        <a class="nav-link rounded-0 shadow active fw-bold" aria-current="true">Documentación
+                            Adjunta</a>
+                    </li>
+                    <button class="nav-item border-0 btn p-0 m-0 c-pointer" style="cursor: pointer !important;"
+                        *ngFor="let t of tramitesFiltradosGlobal">
+                        <button class="nav-link shadow rounded-0 fw-bold bg-success text-white"
+                            *ngIf="t.estado == 'EN PROCESO' || t.estado == 'PAUSADO'"
+                            (click)="FinalizarSolicitud(t.id_solicitud, t.id_contribuyente, t.id_tramite_contribu, usuario_login)"><i
+                                class="fas fa-check me-3"></i>Confirmar</button>
+                    </button>
+                    <li class="nav-item border-0 btn p-0 m-0 c-pointer" style="cursor: pointer !important;"
+                        *ngFor="let t of tramitesFiltradosGlobal">
+                        <button type="button" class="nav-link  shadow fw-bold rounded-0 bg-warning text-dark"
+                            *ngIf="t.estado == 'EN PROCESO'" data-bs-toggle="modal" data-bs-target="#modalTramite">
+                            <i class="fas fa-pause me-3"></i>Pausar Solicitud
+                        </button>
+
+                    </li>
+                    <li class="nav-item border-0 btn p-0 m-0 c-pointer" style="cursor: pointer !important;"
+                        *ngFor="let t of tramitesFiltradosGlobal">
+                        <button type="button" class="nav-link  shadow fw-bold rounded-0 bg-warning text-dark"
+                            *ngIf="t.estado == 'PAUSADO'" data-bs-toggle="modal" data-bs-target="#modalTramite">
+                            <i class="fas fa-pause me-3"></i>Nueva devolución
+                        </button>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="p-2" *ngIf="requisitosDigitalizados && requisitosDigitalizados.length > 0; else sinDatos">
+                <!-- <table class="table table-striped border shadow">
+                    <thead class="text-center bg-azul">
+                        <tr>
+                            <th class="text-center bg-azul">ID</th>
+                            <th class="text-center bg-azul">Detalles</th>
+
+                            <th class="text-center bg-azul">Digitalizado</th>
+
+                            <th class="text-center bg-azul">Accion</th>
+                          
+
+                        </tr>
+                    </thead>
+                    <tbody class="fs-min">
+                        <tr class="p-0 m-0" *ngFor="let doc of requisitosDigitalizados">
+                            <td>{{ doc.idTramitesRequisitos ?? doc.idTramitesRequisitosId ??
+                                doc.idTramitesRequisitos?.idTramitesRequisitos }}</td>
+                            <td class="text-left">{{ doc.TramitesRequisitosDetalles ??
+                                doc.TramitesRequisitosDetallesDetalles ??
+                                doc.Detalles }}
+                            </td>
+
+                            <td>{{ doc.Digitalizado ?? doc.DigitalizadoEstado ?? 'NO' }}</td>
+
+                            <td class="align-items-center">
+                                <button class="btn btn-danger shadow fw-bold rounded text-light fs-min p-1 px-3"
+                                    *ngIf="doc.Digitalizado === 'SI'"><i class="fas fa-trash me-2"></i>Borrar
+                                    requisito</button>
+
+                                <button class="btn border disabled fw-bold rounded text-dark fs-min p-1 px-3"
+                                    *ngIf="doc.Digitalizado === 'NO'"><i class="fas fa-trash me-2"></i>Borrar
+                                    requisito</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+                <div class="row">
+                    <div class="col-3 mb-2 d-flex" *ngFor="let evento of requisitosDigitalizados; let i = index">
+                        <div class="w-100 mb-2 d-flex align-items-stretch">
+                            <div class="toast show w-100 p-2" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header py-0">
+                                    <div class="row p-0">
+                                        <div class="col-10 p-0 text-center">
+                                            <h5 class="text-center fs-min- fw-bold w-100 ff lh-base fw-bold">{{
+                                                evento.TramitesRequisitosDetalles
+                                                }}</h5>
+                                        </div>
+                                        <div class="col-2 p-0">
+
+                                            <!-- <button class="btn btn-danger fw-bold rounded text-light fs-min p-1 px-3"
+                                                *ngIf="evento.Digitalizado === 'SI'"
+                                                (click)="borrarRequisitoDigitalizado(id_tramite_por_contribuyente, usuario_login, evento.IdDocumentosDigitalizados)"><i
+                                                    class="fas fa-trash"></i></button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="toast-header border-0 fs-min p-1">
+                                    <div class="toast-header border-0 fs-min p-1">
+                                        <input type="hidden" name="IdDocumentosDigitalizados"
+                                            [value]="evento?.IdDocumentosDigitalizados">
+                                        <div class="toast-header fs-min p-1 d-flex align-items-stretch">
+                                            <button type="button" class="btn" (click)="openModalWithIndex(i)"
+                                                *ngIf="evento.Digitalizado == 'SI'">
+                                                <img class="card-img-top" [src]="evento?.img | decodebase64 : 'png'"
+                                                    alt="Imagen del requisito" />
+                                            </button>
+
+                                            <span type="button" class="w-100" *ngIf="evento.Digitalizado == 'NO'">
+                                                <h3 class="m-auto text-center w-100 ff">
+                                                    <i class="far fa-file-image"></i>
+                                                    NO SE DIGITALIZÓ LA IMAGEN
+                                                </h3>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalTramite" tabindex="-1" aria-labelledby="modalTramiteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Cabecera -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTramiteLabel">Formulario de Trámite</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <!-- Cuerpo -->
+            <div class="modal-body" *ngFor="let t of tramitesFiltradosGlobal">
+                <form id="formTramite" autocomplete="off">
+                    <div class="mb-3">
+
+                        <input type="hidden" class="form-control" id="id_tramite_por_contribuyente"
+                            name="id_tramite_por_contribuyente" placeholder="Ingrese el ID del trámite"
+                            value="{{t.id_tramite_contribu}}" required>
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <input type="hidden" class="form-control" id="cod_usu" name="cod_usu"
+                            value="{{ usuario_login }}" placeholder="Ingrese el código de usuario" required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="motivo_devolucion" class="form-label fw-bold">Motivo de rechazo</label>
+                        <textarea class="form-control" id="motivo_devolucion" name="motivo_devolucion" rows="4"
+                            placeholder="Describa el motivo de la devolución" [(ngModel)]="motivo_devolucion"
+                            required></textarea>
+                    </div>
+
+                    <h5 class="text-danger fw-bold center m-0 fs-med fs-montserrat">Seleccione los requisitos erroneos
+                    </h5>
+
+                    <!-- <div *ngFor="let doc of requisitosDigitalizados"> -->
+                    <div class="form-check mb-2" *ngFor="let doc of requisitosDigitalizados">
+                        <input class="form-check-input" type="checkbox" [id]="doc.IdDocumentosDigitalizados"
+                            [name]="'requisitosErr[]'" [value]="doc.IdDocumentosDigitalizados"
+                            (change)="onCheckChange($event, doc.IdDocumentosDigitalizados, doc.idTramitesRequisitos)">
+                        <label class="form-check-label" [for]="doc.IdDocumentosDigitalizados">
+                            {{doc.TramitesRequisitosDetalles}}
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="onSubmitFormPausar()">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalRequisito" tabindex="-1" aria-labelledby="ModalRequisitoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalRequisitoLabel">{{ selectedReq?.titulo || 'Requisito' }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center align-items-center p-3">
+                <img class="img-fluid" [src]="selectedReq?.img | decodebase64 : 'png'"
+                    alt="Imagen grande del requisito" />
+            </div>
+            <div class="modal-footer">
+                <!-- Puedes mostrar más datos si quieres -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

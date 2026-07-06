@@ -1,0 +1,326 @@
+<h5 class="fw-bold m-0 text-left ff fs-alto rounded p-1 mb-3 shadow-sm">Listado de solicitudes realizadas al area
+    Habilitaciones Comerciales</h5>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item " role="presentation">
+        <button class="fw-bold nav-link rounded-0 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#todos"
+            type="button" role="tab" aria-controls="home" aria-selected="true">
+            <i class="fas fa-list-ol me-2"></i>
+            Todos
+        </button>
+    </li>
+    <li class="nav-item " role="presentation">
+        <button class="fw-bold nav-link rounded-0" id="home-tab" data-bs-toggle="tab" data-bs-target="#solicitados"
+            type="button" role="tab" aria-controls="home" aria-selected="true">
+            <i class="fas fa-calendar me-2"></i>
+            Solicitados
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="fw-bold nav-link rounded-0" id="profile-tab" data-bs-toggle="tab" data-bs-target="#en_proceso"
+            type="button" role="tab" aria-controls="profile" aria-selected="false">
+            <i class="fas fa-clock me-2"></i>En Proceso
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="fw-bold nav-link rounded-0" id="messages-tab" data-bs-toggle="tab" data-bs-target="#pausados"
+            type="button" role="tab" aria-controls="messages" aria-selected="false">
+            <i class="fas fa-pause me-2 "></i>Pausados
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="fw-bold nav-link rounded-0" id="messages-tab" data-bs-toggle="tab" data-bs-target="#terminados"
+            type="button" role="tab" aria-controls="messages" aria-selected="false">
+            <i class=" fas fa-calendar-check me-2 "></i>Terminados
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content border-end border-start border-bottom shadow">
+    <div class="tab-pane p-3 active" id="todos" role="tabpanel" aria-labelledby="home-tab">
+        <div class="mat-elevation-z8">
+
+            <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+
+                <ng-container matColumnDef="#">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>#</th>
+                    <td class="text-center" mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="solicitante">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Solicitante</th>
+                    <td mat-cell *matCellDef="let element">{{element.solicitante}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="fecha">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.fecha}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Tipo</th>
+                    <td mat-cell *matCellDef="let element">{{element.tipo}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="estado">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <button class="btn btn-sm shadow-sm border" color="primary" (click)="accionFila(element)"><i
+                                class="fas fa-file-contract"></i> Inspeccionar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+    <div class="tab-pane p-3" id="solicitados" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="mat-elevation-z8">
+
+            <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+
+                <ng-container matColumnDef="#">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>#</th>
+                    <td class="text-center" mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="solicitante">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Solicitante</th>
+                    <td mat-cell *matCellDef="let element">{{element.solicitante}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="fecha">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.fecha}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Tipo</th>
+                    <td mat-cell *matCellDef="let element">{{element.tipo}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="estado">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <button class="btn btn-sm shadow-sm border" color="primary" (click)="accionFila(element)"><i
+                                class="fas fa-file-contract"></i> Inspeccionar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+
+    <div class="tab-pane p-3" id="en_proceso" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="mat-elevation-z8">
+
+            <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+
+                <ng-container matColumnDef="#">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>#</th>
+                    <td class="text-center" mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="solicitante">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Solicitante</th>
+                    <td mat-cell *matCellDef="let element">{{element.solicitante}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="fecha">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.fecha}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Tipo</th>
+                    <td mat-cell *matCellDef="let element">{{element.tipo}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="estado">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <button class="btn btn-sm shadow-sm border" color="primary" (click)="accionFila(element)"><i
+                                class="fas fa-file-contract"></i> Inspeccionar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+    <div class="tab-pane p-3" id="pausados" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="mat-elevation-z8">
+
+            <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+
+                <ng-container matColumnDef="#">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>#</th>
+                    <td class="text-center" mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="solicitante">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Solicitante</th>
+                    <td mat-cell *matCellDef="let element">{{element.solicitante}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="fecha">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.fecha}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Tipo</th>
+                    <td mat-cell *matCellDef="let element">{{element.tipo}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="estado">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <button class="btn btn-sm shadow-sm border" color="primary" (click)="accionFila(element)"><i
+                                class="fas fa-file-contract"></i> Inspeccionar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+    <div class="tab-pane p-3" id="terminados" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="mat-elevation-z8">
+
+            <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+
+                <ng-container matColumnDef="#">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>#</th>
+                    <td class="text-center" mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="solicitante">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Solicitante</th>
+                    <td mat-cell *matCellDef="let element">{{element.solicitante}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="fecha">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.fecha}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Tipo</th>
+                    <td mat-cell *matCellDef="let element">{{element.tipo}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="estado">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td class="text-center" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th class="text-center" mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <button class="btn btn-sm shadow-sm border" color="primary" (click)="accionFila(element)"><i
+                                class="fas fa-file-contract"></i> Inspeccionar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+</div>

@@ -7,14 +7,19 @@ import { environment } from '../../../environment/environment';
   providedIn: 'root',
 })
 export class AuthTokenService {
-  private apiUrl = `${environment.base_url + '/auth'}`;
+  // private apiUrl = `${environment.base_url + '/auth'}`;
+  private apiUrl = `http://192.168.0.248:8002/api/auth`;
+  // private apiUrl = `https://app.ingresosmunicipfsa.gob.ar:8000/api/auth/`;
+
+
 
   private readonly TOKEN_KEY = 'access_token';
   private readonly USERNAME = 'username';
   private readonly TOKEN_TYPE = 'tokenType';
   private readonly MODULOS = 'modulos';
+  private readonly MODULOSELECT = 'moduloSeleccionado';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
     const loginObj = {
@@ -49,6 +54,8 @@ export class AuthTokenService {
     localStorage.setItem(this.TOKEN_TYPE, data.token_type);
     localStorage.setItem(this.USERNAME, data.username);
     localStorage.setItem(this.MODULOS, data.modulos);
+    localStorage.setItem(this.MODULOSELECT, data.moduloSeleccionado);
+
   }
 
   getDataLogin() {
@@ -57,6 +64,7 @@ export class AuthTokenService {
       token_type: this.getTokenType(),
       username: this.getUsername(),
       modulos: this.getModulos(),
+      moduloSeleccionado: this.getModuloSeleccionado(),
     };
   }
 
@@ -80,6 +88,11 @@ export class AuthTokenService {
     localStorage.setItem(this.USERNAME, username);
   }
 
+  saveModuloSeleccionado(moduloSeleccionado: string) {
+    localStorage.setItem(this.MODULOSELECT, moduloSeleccionado);
+  }
+
+
   getUsername(): string | null {
     return localStorage.getItem(this.USERNAME);
   }
@@ -90,5 +103,9 @@ export class AuthTokenService {
 
   getModulos(): string | null {
     return localStorage.getItem(this.MODULOS);
+  }
+
+  getModuloSeleccionado(): string | null {
+    return localStorage.getItem(this.MODULOSELECT);
   }
 }

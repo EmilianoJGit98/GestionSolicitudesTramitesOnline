@@ -1,46 +1,25 @@
 <div class="flex-column flex-shrink-0 p-3 shadow bg-light d-none d-lg-none d-xl-block vh-100 w-100">
   <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <img src="img/logoMunicipalidadFsa.png" class="me-4 ms-3 rounded shadow" alt="" width="60" />
-    <span *ngIf="modulo253" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes para Factibilidad
-      Comercial</span>
+    <span class="fs-min fw-bold text-dark lh-sm">Municipalidad Digital {{ tituloHeader }}</span>
 
-    <span *ngIf="modulo129" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes para Habilitaciones
+    <!-- <span *ngIf="modulo129" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes para Habilitaciones
       Comerciales</span>
 
     <span *ngIf="modulo204" class="fs-min fw-bold text-dark">Municipalidad Digital - Solicitudes Tramites de los
-      Automotores</span>
+      Automotores</span> -->
   </a>
   <!-- <hr> -->
   <ul class="nav nav-pills flex-column mb-auto mt-4">
     <li class="nav-item d-flex justify-content-center">
-      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="home"
+      <a class="nav-link w-100 fs-min- fw-bold text-dark active" aria-current="page" routerLink="{{ rutaSolicitudes }}"
         routerLinkActive="active">
         <i class="fas fa-list-ul"></i>
-        Pagina Principal
+        Solicitudes
       </a>
     </li>
-    <li class="nav-item d-flex justify-content-center">
-      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="pendientes"
-        routerLinkActive="active">
 
-        <i class="fa-solid fa-hourglass-half"></i>
-        Solicitudes Pendientes
-      </a>
-    </li>
-    <li class="nav-item d-flex justify-content-center">
-      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="rechazados"
-        routerLinkActive="active">
-        <i class="fa-solid fa-xmark"></i>
-        Solicitudes Rechazadas
-      </a>
-    </li>
-    <li class="nav-item d-flex justify-content-center">
-      <a class="nav-link w-100 fs-min- fw-bold text-dark" aria-current="page" routerLink="completados"
-        routerLinkActive="active">
-        <i class="fa-solid fa-circle-check"></i>
-        Solicitudes Completadas
-      </a>
-    </li>
+
     <li class="nav-item d-flex justify-content-center" style="margin-top: auto !important">
       <button class="nav-link w-100 fs-min- fw-bold logout text-danger" aria-current="page" (click)="cerrarSesion()">
         <i class="fas fa-power-off me-2"></i>
@@ -49,37 +28,3 @@
     </li>
   </ul>
 </div>
-
-<nav class="navbar navbar-expand-sm navbar-light bg-light shadow d-lg-block d-xl-none">
-  <div class="container">
-    <a class="navbar-brand">Pag. Principal</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
-      aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-        <li class="nav-item me-2">
-          <a class="nav-link px-3 fw-bold active px-2" routerLink="home" routerLinkActive="router-link-active"
-            routerLinkActive="active" aria-current="page"><i class="fas fa-calendar"></i> Pag. Principal
-            <span class="visually-hidden">(current)</span></a>
-        </li>
-        <li class="nav-item me-2 d-flex justify-content-center">
-          <!-- <button class="nav-link px-3 fw-bold w-100 fs-min fw-bold logout text-danger px-2 rounded" aria-current="page">
-            <i class="fas fa-power-off me-2"></i>
-            Cerrar Sesión
-          </button> -->
-
-          <button class="nav-link px-3 fw-bold w-100 fs-min fw-bold logout text-danger px-2 rounded" aria-current="page"
-            (click)="cerrarSesion()">
-            <i class="fas fa-power-off me-2"></i>
-            Cerrar Sesión
-          </button>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" [routerLink]="['usuarios/', 1]">actividades</a>
-        </li> -->
-      </ul>
-    </div>
-  </div>
-</nav>
